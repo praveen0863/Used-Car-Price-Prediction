@@ -1,0 +1,133 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Used Car Price Prediction</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 30px;
+        }
+
+        .container {
+            width: 450px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #cccccc;
+        }
+
+        h1 {
+            text-align: center;
+            color: #263b5e;
+        }
+
+        label {
+            display: block;
+            margin-top: 12px;
+            font-weight: bold;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 9px;
+            margin-top: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 20px;
+            background-color: #263b5e;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .result {
+            text-align: center;
+            margin-top: 20px;
+            color: green;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Used Car Price Prediction</h1>
+
+    <form action="/predict" method="POST">
+
+        <label>Manufacturing Year</label>
+        <input type="number" name="year"
+               min="2012" max="2025" value="2020" required>
+
+        <label>Mileage (km)</label>
+        <input type="number" name="mileage"
+               min="0" step="0.1" value="15000" required>
+
+        <label>Fuel Type</label>
+        <select name="fuel" required>
+            <option value="Petrol">Petrol</option>
+            <option value="Diesel">Diesel</option>
+            <option value="CNG">CNG</option>
+            <option value="Electric">Electric</option>
+        </select>
+
+        <label>Transmission</label>
+        <select name="transmission" required>
+            <option value="Manual">Manual</option>
+            <option value="Automatic">Automatic</option>
+        </select>
+
+        <label>Brand</label>
+        <select name="brand" required>
+            <option value="Maruti">Maruti</option>
+            <option value="Kia">Kia</option>
+            <option value="Toyota">Toyota</option>
+            <option value="Honda">Honda</option>
+            <option value="Volkswagen">Volkswagen</option>
+            <option value="Hyundai">Hyundai</option>
+            <option value="Tata">Tata</option>
+            <option value="Mahindra">Mahindra</option>
+        </select>
+
+        <label>Vehicle Type</label>
+        <select name="vehicle_type" required>
+            <option value="Hatchback">Hatchback</option>
+            <option value="SUV">SUV</option>
+            <option value="Sedan">Sedan</option>
+            <option value="MUV">MUV</option>
+        </select>
+
+        <label>Previous Owners</label>
+        <input type="number" name="owners"
+               min="1" max="3" value="1" required>
+
+        <label>Engine Capacity (CC)</label>
+        <input type="number" name="engine"
+               min="800" max="2500" value="1500" required>
+
+        <button type="submit">Predict Car Price</button>
+
+    </form>
+
+    {% if prediction_text %}
+        <div class="result">
+            {{ prediction_text }}
+        </div>
+    {% endif %}
+
+</div>
+
+</body>
+</html>
